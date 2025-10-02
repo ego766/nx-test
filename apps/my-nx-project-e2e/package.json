@@ -1,0 +1,10 @@
+{
+  "name": "@my-nx-project/my-nx-project-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@my-nx-project/my-nx-project"
+    ]
+  }
+}
