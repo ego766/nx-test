@@ -1,31 +1,28 @@
 /// <reference types='vitest' />
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import vue from '@vitejs/plugin-vue';
 import federation from '@originjs/vite-plugin-federation';
 
 export default defineConfig(() => ({
   root: __dirname,
-  cacheDir: '../../node_modules/.vite/apps/my-nx-project',
+  cacheDir: '../../node_modules/.vite/apps/my-vue-app',
   server: {
-    // remote app runs on 4201 to avoid colliding with the host (4200)
-    port: 4201,
+    port: 4200,
     host: 'localhost',
   },
   preview: {
-    port: 4301,
+    port: 4300,
     host: 'localhost',
   },
   plugins: [
-    react(),
-    // Expose the React app as a remote for host consumption
+    vue(),
     federation({
-      name: 'my-nx-project',
-      filename: 'remoteEntry.js',
-      exposes: {
-        // expose the mount function from the remote's main so host can call mount(container)
-        './mount': './src/main.tsx',
+      name: 'my-vue-app',
+      remotes: {
+        // remote name matches the remote's federation name and points to the dev server
+        'my-nx-project': 'http://localhost:4201/assets/remoteEntry.js',
       },
-      shared: ['react', 'react-dom', 'react-router-dom'],
+      shared: ['vue', 'vue-router'],
     }),
   ],
   // Uncomment this if you are using workers.
@@ -41,7 +38,7 @@ export default defineConfig(() => ({
     },
   },
   test: {
-    name: '@my-nx-project/my-nx-project',
+    name: '@my-nx-project/my-vue-app',
     watch: false,
     globals: true,
     environment: 'jsdom',

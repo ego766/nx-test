@@ -1,0 +1,5 @@
+{
+  "name": "@my-nx-project/my-vue-app",
+  "version": "0.0.1",
+  "private": true
+}

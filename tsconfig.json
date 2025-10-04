@@ -8,6 +8,12 @@
     },
     {
       "path": "./apps/my-nx-project"
+    },
+    {
+      "path": "./apps/my-vue-app-e2e"
+    },
+    {
+      "path": "./apps/my-vue-app"
     }
   ]
 }
